@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-
+import { runCliMode } from "../Modes/cli";
 import chalk from "chalk";
 import figlet from "figlet";
 import {select , isCancel} from "@clack/prompts"
@@ -48,17 +48,18 @@ export async function wakeup(){
             // CLI options that we see in menu
             {value:"cli",label:"CLI"},
             {value:"telegram",label:"Telegram"},
+            {value:"exit",label:"Exit"}
         ]
       })
 
 
-      if(isCancel(mode)){
-        process.exit(0)
+      if(isCancel(mode) || mode === "exit"){
+        console.log(chalk.dim("\n Goodbye 🦀\n"))
       }
-      if(mode === "cli"){
-console.log(chalk.dim("Cli mode starting..."))
+     else if(mode === "cli"){
+        runCliMode()
       }
-      if(mode === "telegram"){
+      else if(mode === "telegram"){
         console.log(chalk.dim("Telegrma mode starting...."))
       }
      
