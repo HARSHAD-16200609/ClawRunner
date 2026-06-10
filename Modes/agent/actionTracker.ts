@@ -2,7 +2,7 @@ import type { ActionStatus, ActionLog } from "./types.ts"
 import { isMutationType } from "./types.ts"
 
 
-export class ActionTraker{
+export class ActionTracker{
 private actions : ActionLog[] = [];
  
 
@@ -27,7 +27,7 @@ private actions : ActionLog[] = [];
 
 }
 
-   getLogs() :readonly ActionLog[]{
+   getActions() :readonly ActionLog[]{
   return this.actions
   }
 
