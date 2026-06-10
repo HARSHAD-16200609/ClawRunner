@@ -4,7 +4,8 @@ import { getAgentModel } from "../../AI/ai.config"
 import { generateText } from "ai"
 import { runCliMode } from "../cli"
 import { defaultAgentConfig, type ActionLog } from "./types"
-import { ActionTraker } from "./actionTracker"
+import { ActionTracker } from "./actionTracker"
+import { ToolExecutor } from "./tool-executor"
 
 
 
@@ -39,7 +40,8 @@ export async function runAgentMode() {
   }
 
   const config = defaultAgentConfig();
-  const tracker = new ActionTraker()
-
+  const tracker = new ActionTracker()
+  const executor  = new ToolExecutor(tracker,config)
+const tools = createAgentTools(executor) 
 
 }
