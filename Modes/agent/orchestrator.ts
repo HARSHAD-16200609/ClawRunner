@@ -8,6 +8,7 @@ import { ActionTracker } from "./actionTracker"
 import { ToolExecutor } from "./tool-executor"
 import { createAgentTools } from "./agent-tools"
 import { renderTerminalMarkdown } from "../../tui/terminal-md"
+import { runApprovalFlow } from "./approval"
 
 
 
@@ -45,7 +46,7 @@ const result = await agent.generate({
       const preview = JSON.stringify((tc.input)).slice(0,160)
       console.log( chalk.green(' ✓'),
       chalk.bold(String(tc.toolName)),
-      chalk.dim((preview + (preview.length >= 160 ? "..." : "")),
+      chalk.dim((preview+ (preview.length >= 160 ? "..." : "")),
         )
       ) 
     }
@@ -54,7 +55,8 @@ const result = await agent.generate({
 
  if (result.text?.trim()) console.log(renderTerminalMarkdown(result.text));
 
- const ok = startAprrovalFlow(executor);
+ 
+ const ok =await  runApprovalFlow(tracker);
  if(!ok) executor.clearStaging();
   
  const {errors} = executor.applyApprovedFromTracker();
