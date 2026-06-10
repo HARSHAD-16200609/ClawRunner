@@ -29,7 +29,7 @@ export async function runCliMode() {
         }
     }
 else if(mode === "agent"){
-    runAgentMode()
+   await runAgentMode()
     break
 }
 else if(mode === "ask"){

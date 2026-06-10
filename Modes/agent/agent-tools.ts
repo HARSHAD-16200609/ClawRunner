@@ -107,5 +107,10 @@ export function createAgentTools(executor: ToolExecutor) {
       }),
       execute: async ({ path: p }) => executor.readSkill(p),
     }),
+    clear_Staging:tool({
+       description:"Use this Skill to clear our Staging Area",
+       inputSchema:z.object({}),
+       execute:async()=>executor.clearStaging()
+    })
   };
 }
