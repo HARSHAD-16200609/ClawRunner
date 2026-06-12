@@ -2,6 +2,7 @@ import chalk, { Chalk } from "chalk";
 import { select, isCancel } from "@clack/prompts"
 import { wakeup } from "../tui/wakeup";
 import {runAgentMode } from "./agent/orchestrator.ts"
+import { runAskMode } from "./ask/orchestrator.ts";
 
 export async function runCliMode() {
     while(true){
@@ -33,7 +34,7 @@ else if(mode === "agent"){
     break
 }
 else if(mode === "ask"){
-    console.log(chalk.dim("Starting Ask Mode"));
+   await runAskMode()
 }
 else if(mode === "plan"){
     console.log(chalk.dim("Starting Plan Mode"));
