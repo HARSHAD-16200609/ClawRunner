@@ -3,6 +3,7 @@ import { select, isCancel } from "@clack/prompts"
 import { wakeup } from "../tui/wakeup";
 import {runAgentMode } from "./agent/orchestrator.ts"
 import { runAskMode } from "./ask/orchestrator.ts";
+import { runPlanMode } from "./plan/orchestrator.ts";
 
 export async function runCliMode() {
     while(true){
@@ -37,7 +38,7 @@ else if(mode === "ask"){
    await runAskMode()
 }
 else if(mode === "plan"){
-    console.log(chalk.dim("Starting Plan Mode"));
+   await runPlanMode()
 }else { 
     console.log(chalk.yellow("\nMode not Implemented Yet..\n"))
     return

@@ -8,6 +8,7 @@ import { ToolExecutor } from "../agent/tool-executor.ts";
 import { defaultAgentConfig } from "../agent/types.ts";
 import { renderTerminalMarkdown } from "../../tui/terminal-md.ts";
 import { runApprovalFlow } from "../agent/approval.ts";
+import { createWebTools } from "../plan/web-tools.ts";
 // import { createWebTools } from "../plan/web-tools.ts";
 
 
@@ -77,7 +78,7 @@ function asMd(question: string, answer: string): string {
 
 
 export async function runAskMode() {
-    console.log(chalk.green("\n? Ask Mode\n"))
+    console.log(chalk.green("\n🙋 Ask Mode\n"))
 
     const question = await text({ message: "What do you want to ask?" });
     if (isCancel(question) || !question.trim()) return;
@@ -94,8 +95,7 @@ export async function runAskMode() {
 
     const tools = {
         ...createAskTools(executor),
-
-
+        ...createWebTools(tracker)
     }
 
     const agent = new ToolLoopAgent({

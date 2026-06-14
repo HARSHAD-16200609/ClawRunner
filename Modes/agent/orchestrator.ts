@@ -13,7 +13,7 @@ import { runApprovalFlow } from "./approval"
 
 
 export async function runAgentMode() {
-  console.log(chalk.bold("\n 🤖 Running Agent Mode\n"))
+  console.log(chalk.bold("\n 🥷🏻 Running Agent Mode\n"))
   
     const goal = await text({
       message: "What Would you like the agent to do for you ??",
@@ -44,7 +44,7 @@ const result = await agent.generate({
   onStepFinish: ({toolCalls})=>{
     for(const  tc of toolCalls){
       const preview = JSON.stringify((tc.input)).slice(0,160)
-      console.log( chalk.green(' ✓'),
+      console.log( chalk.green(' ✔'),
       chalk.bold(String(tc.toolName)),
       chalk.dim((preview+ (preview.length >= 160 ? "..." : "")),
         )
